@@ -1,0 +1,24 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+       commands:
+        - cd notesapp
+        - npm install
+        - npm audit fix
+    build:
+      commands:
+        - npm run build --verbose
+    postBuild:
+      commands:
+      - pwd
+      - chmod -R 755 dist
+      - ls 
+      - echo $CODEBUILD_SRC_DIR
+  artifacts:
+    baseDirectory: "notesapp/dist"
+    files:
+      - "**/*"
+  cache:
+    paths:   
+      - node_modules/**/* 
