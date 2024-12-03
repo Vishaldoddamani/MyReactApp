@@ -4,7 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+   
+  const colours = ['red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'brown', 'black', 'white'];
+ 
+  const [showcolours, setColours] = useState(false);
+
+  const handleClick = () => {
+    setColours((showcolours) => !showcolours);
+  }
+  
 
   return (
     <>
@@ -21,6 +30,19 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={handleClick}>
+          Print Colours
+        </button>
+
+        <ul>
+
+          {showcolours && colours.map((colour, index) => (
+            <li key={index} style={{ color: colour }}>
+              {colour}
+            </li>
+          ))}
+
+        </ul>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -32,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
